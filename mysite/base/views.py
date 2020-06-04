@@ -6,7 +6,6 @@ from thread.models import Topic
 def top(request):
     ctx = {'title': 'IT学習ちゃんねる(仮)'}
     return render(request, 'base/top.html', ctx)
-
 class TopView(TemplateView):
     template_name = 'base/top.html'
 
