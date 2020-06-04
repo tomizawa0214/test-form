@@ -1,4 +1,11 @@
-from django.views.generic import TemplateView
+from django.shortcuts import render
+from django.views.generic import TemplateView, ListView
+
+from thread.models import Topic
+
+def top(request):
+    ctx = {'title': 'IT学習ちゃんねる(仮)'}
+    return render(request, 'base/top.html', ctx)
 
 class TopView(TemplateView):
     template_name = 'base/top.html'
@@ -7,3 +14,8 @@ class TopView(TemplateView):
         ctx = super().get_context_data(**kwargs)
         ctx['title'] = 'IT学習ちゃんねる(仮)'
         return ctx
+    
+class TopicListView(ListView):
+    template_name = 'base/top.html'
+    queryset = Topic.objects.order_by('-created')
+    context_object_name = 'topic_list'
