@@ -1,3 +1,4 @@
+from django.forms import ModelForm
 from django import forms
 from . models import Topic, Category
 
@@ -47,3 +48,13 @@ class TopicForm(forms.Form):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
+
+class TopicCreateForm(ModelForm):
+    class Meta:
+        model=Topic
+        fields=[
+            'title',
+            'user_name',
+            'category',
+            'message',
+        ]
